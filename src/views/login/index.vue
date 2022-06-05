@@ -1,36 +1,36 @@
 <template>
-  <div class="root">
-    <div class="top"></div>
-    <div class="img"></div>
-    <div class="bottom">
-      <div class="form-item">
-        <input
-          v-model="loginInfo.qq"
-          type="text"
-          placeholder="QQNumber"
-          autofocus
-          @keydown.enter="handleLogin"
-        />
-        <input
-          v-model="loginInfo.qq"
-          autofocus
-          type="text"
-          class="input"
-          placeholder="QQNumber"
-          @keydown.enter="handleLogin"
-        />
+  <div class="flex">
+    <div class="root">
+      <div class="top">
+        <div class="img"><img src="../../assets/images/login/guanbi.png" /></div>
+        <div class="icon"><i class="iconfont icon-erweima"></i></div>
       </div>
-      <div class="form-item" mt-35>
-        <input
-          v-model="loginInfo.password"
-          type="password"
-          class="input"
-          placeholder="password"
-          @keydown.enter="handleLogin"
-        />
+      <div class="middle">
+        <div><img src="@/assets/images/login/qq.jpeg" alt="" /></div>
       </div>
-      <div class="form-item" mt-35>
-        <button class="submit-btn" @click="handleLogin">登录</button>
+      <div class="bottom">
+        <div>
+          <div class="input username">
+            <input
+              v-model="loginInfo.qq"
+              autofocus
+              type="text"
+              placeholder="QQNumber"
+              @keydown.enter="handleLogin"
+            />
+          </div>
+          <div class="input password">
+            <input
+              v-model="loginInfo.password"
+              type="password"
+              placeholder="password"
+              @keydown.enter="handleLogin"
+            />
+          </div>
+          <div class="login">
+            <a class="iconfont icon-denglu" @click="handleLogin"></a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -79,4 +79,71 @@ async function handleLogin() {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.root {
+  background-color: #fff;
+  width: 15vw;
+  height: 40vh;
+  border-radius: 10px;
+  .bottom {
+    display: flex;
+    justify-content: center;
+
+    .input {
+      font-size: 18px;
+      border-bottom: 1px solid rgb(217, 220, 222);
+      line-height: 5vh;
+    }
+    .login {
+      display: flex;
+      justify-content: center;
+      a {
+        font-size: 2em;
+      }
+    }
+
+    // .password {
+    //   padding-right: 20px;
+    //   background: url('@/assets/images/login/jinru.png') no-repeat scroll right center transparent;
+    // }
+  }
+
+  .middle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3vh;
+    img {
+      width: 5vw;
+      border-radius: 50px;
+    }
+  }
+
+  .top {
+    margin-bottom: 6vh;
+    .img {
+      float: left;
+      margin: 8px;
+    }
+    img {
+      width: 1vw;
+    }
+    .icon {
+      float: right;
+      margin: 8px;
+    }
+    i {
+      width: 1vw;
+    }
+  }
+}
+.flex {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-image: url('@/assets/images/login_bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+</style>

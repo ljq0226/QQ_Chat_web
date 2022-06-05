@@ -11,12 +11,8 @@ const userApi = {
     return http.post('/user/login', userinfo)
   },
   //获取好友列表
-  async getFriendList() {
-    const loginInfo: { qq: string; password: string } = JSON.parse(
-      localStorage.getItem('loginInfo') as any
-    )
-
-    return http.get(`/user/friends/${loginInfo.qq} `)
+  async getFriendList(qq: string) {
+    return http.get(`/user/friends/${qq} `)
   },
 }
 export default userApi

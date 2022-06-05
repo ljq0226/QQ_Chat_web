@@ -7,7 +7,7 @@ export const useFriendStore = defineStore('friend', {
   getters: {},
   actions: {
     async getFriendList() {
-      const res: any = await userApi.getFriendList()
+      const res: any = await userApi.getFriendList('111')
       try {
         if (res.code === 0) {
           this.friendInfo = res.data
