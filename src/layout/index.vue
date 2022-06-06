@@ -41,6 +41,7 @@ import SideList from './components/sideList/index.vue'
     .header {
       height: 8%;
       background-color: rgba(223, 223, 224, 0.5);
+      opacity: 0.9;
       border-bottom: 1px solid rgba(18, 17, 17, 0.8);
     }
 
@@ -55,7 +56,6 @@ import SideList from './components/sideList/index.vue'
         width: 30%;
         height: 100%;
         overflow: auto;
-        position: relative;
       }
       .mainView {
         background-image: url('@/assets/images/home/qqbc.png');
@@ -64,7 +64,6 @@ import SideList from './components/sideList/index.vue'
         background-size: cover;
         background-color: rgba(253, 253, 253, 0.5);
         display: flex;
-        width: 100%;
       }
     }
   }

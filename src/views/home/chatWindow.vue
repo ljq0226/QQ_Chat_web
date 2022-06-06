@@ -6,19 +6,48 @@
       <div class="open"></div>
       <div class="messageIcon"><img src="@/assets/images/home/messeage.png" alt="" /></div>
     </div>
-    <div class="chatMessage">messeage</div>
-    <div class="chat">chat</div>
+    <div class="chat_Message">
+      <ChatMessage :params="{ record: recordStore.record, userInfo: router.query }"></ChatMessage>
+    </div>
+    <div class="chat">
+      <div class="icons">
+        <div class="icon"><i class="iconfont icon-biaoqing-xue"></i></div>
+        <div class="icon"><i class="iconfont icon-5jietu-1"></i></div>
+        <div class="icon"><i class="iconfont icon-doudong-shake"></i></div>
+        <div class="icon"><i class="iconfont icon-wenjianjia"></i></div>
+        <div class="icon"><i class="iconfont icon-xingtuxuetang-chuangjianwendangcitiao-"></i></div>
+        <div class="icon"><i class="iconfont icon-24gl-telephone"></i></div>
+        <div class="icon"><i class="iconfont icon-shizhong"></i></div>
+        <div class="icon"><i class="iconfont icon-zimudaxie"></i></div>
+        <div class="icons_open"></div>
+      </div>
+      <div class="sendMessage">
+        <textarea v-model="newMessage" @keydown.enter="sendNewMessage" />
+      </div>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
-import { onBeforeMount, reactive } from 'vue'
+import { onBeforeMount, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useMessage } from 'naive-ui'
+import { useRecordStore } from '@/store/record'
+import ChatMessage from './chatMessage.vue'
+const recordStore = useRecordStore()
 const router = useRoute()
 let friend: any = reactive({})
+let record: any = reactive({})
+const newMessage = ref('')
 onBeforeMount(() => {
   friend = router.query
+  recordStore.getRecord({ senderQQ: '222', receiverQQ: '111' })
+  record = recordStore.record
 })
+
+const sendNewMessage = () => {
+  console.log('发送新消息', newMessage.value)
+  newMessage.value = ''
+}
 </script>
 <style lang="scss" scoped>
 .chat_all {
@@ -28,11 +57,38 @@ onBeforeMount(() => {
   position: relative;
   .chat {
     height: 13.9vh;
-    background-color: $primaryColor;
+    width: 45.8vw;
+    display: flex;
+    flex-direction: column;
+    .sendMessage {
+      margin-top: 1vh;
+      height: 12.9vh;
+      textarea {
+        font-size: 16px;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .icons {
+      height: 2vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      .icons_open {
+        flex: 0.5;
+      }
+      .icon {
+        i {
+          font-size: 20px;
+          opacity: 0.7;
+        }
+      }
+    }
   }
-  .chatMessage {
-    height: 50vh;
-    background-color: rgb(126, 65, 65);
+  .chat_Message {
+    height: 48vh;
+    background-color: rgb(253, 253, 253);
+    overflow: auto;
   }
   .top {
     display: flex;

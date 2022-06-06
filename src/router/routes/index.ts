@@ -4,7 +4,7 @@ import path from 'path'
 export const basicRoutes = [
   {
     name: 'home',
-    path: '/',
+    path: '/home',
     component: Layout,
     children: [
       {
