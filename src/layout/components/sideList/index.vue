@@ -1,40 +1,24 @@
 <template>
-  <div>
-    <template v-for="item in friendStore.friendInfo" :key="item.qq">
-      <div class="chatWindow">
-        <div class="left"><img src="@/assets/images/qq.jpeg" /></div>
-        <div class="'middle">
-          <span>{{ item.username }}</span>
-        </div>
-        <div class="right">星期1</div>
-      </div>
-    </template>
-  </div>
+  <template v-for="item in friendStore.friendInfo" :key="item.qq">
+    <Card :friend="item" @click="goChat(item)"></Card>
+  </template>
 </template>
 <script setup>
 import { useFriendStore } from '@/store/friend'
-import { onBeforeMount, reactive, ref, onMounted } from 'vue'
+import { onBeforeMount, reactive, ref, onMounted, unref } from 'vue'
+import { useRouter } from 'vue-router'
+import Card from './card.vue'
+
 const friendStore = useFriendStore()
 const friendsInfo = reactive(friendStore.friendInfo)
+const router = useRouter()
 onBeforeMount(() => {
   friendStore.getFriendList()
 })
-</script>
-<style lang="scss" scoped>
-.chatWindow {
-  display: flex;
-  justify-content: space-between;
-  width: 16vw;
-  .left {
-    img {
-      width: 40px;
-      height: 40px;
-      border-radius: 20px;
-    }
-  }
-  .middle {
-    display: flex;
-    flex-direction: row;
-  }
+const goChat = (item) => {
+  console.log('点击进入')
+  const { qq, username } = unref(item)
+  router.push({ path: '/chatWindow', query: { qq, username } })
 }
-</style>
+</script>
+<style lang="scss" scoped></style>

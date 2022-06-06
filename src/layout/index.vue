@@ -22,7 +22,6 @@ import { useThemeStore } from '@/store/theme'
 import Header from './components/header/index.vue'
 import MainView from './components/mainView/index.vue'
 import SideList from './components/sideList/index.vue'
-const useTheme = useThemeStore()
 </script>
 
 <style lang="scss" scoped>
@@ -36,29 +35,36 @@ const useTheme = useThemeStore()
   .view {
     background-color: #fff;
     height: 75vh;
-    width: 67vw;
+    width: 60vw;
     display: flex;
     flex-direction: column;
     .header {
       height: 8%;
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: rgba(223, 223, 224, 0.5);
       border-bottom: 1px solid rgba(18, 17, 17, 0.8);
     }
 
     .bottom {
       display: flex;
+      height: 90%;
       .sideList {
         background-color: rgba(253, 253, 253, 0.5);
         display: flex;
+        flex-flow: column;
         border-right: 1px solid rgba(91, 84, 84, 0.5);
-        width: 27%;
+        width: 30%;
         height: 100%;
         overflow: auto;
         position: relative;
       }
       .mainView {
+        background-image: url('@/assets/images/home/qqbc.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
         background-color: rgba(253, 253, 253, 0.5);
         display: flex;
+        width: 100%;
       }
     }
   }

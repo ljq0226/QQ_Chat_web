@@ -1,10 +1,21 @@
 import Layout from '@/layout/index.vue'
 import { RouteRecordRaw } from 'vue-router'
+import path from 'path'
 export const basicRoutes = [
   {
     name: 'home',
     path: '/',
     component: Layout,
+    children: [
+      {
+        name: 'chatWindow',
+        path: '/chatWindow',
+        component: () => import('@/views/home/chatWindow.vue'),
+        queryParams: {
+          item: {},
+        },
+      },
+    ],
   },
   {
     name: '404',
