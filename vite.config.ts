@@ -34,7 +34,7 @@ export default defineConfig({
   //启动服务配置
   server: {
     host: '0.0.0.0',
-    port: 8000,
+    port: 5000,
     open: true,
     https: false,
     proxy: {
@@ -44,16 +44,6 @@ export default defineConfig({
         secure: false, // 如果是https接口，需要配置这个参数
         changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
         rewrite: (path) => path.replace(/^\/api/, '/api'),
-      },
-    },
-  },
-  // 生产环境打包配置
-  //去除 console debugger
-  build: {
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
       },
     },
   },

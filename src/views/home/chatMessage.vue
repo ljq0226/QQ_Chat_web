@@ -1,5 +1,7 @@
 <template>
   <div class="message_all">
+    <button @click="send"></button>
+
     <template v-for="item in p.params.record" :key="item">
       <div class="time-space">
         <div class="time">
@@ -33,11 +35,24 @@
   </div>
 </template>
 <script setup lang="ts">
-import { reactive } from 'vue-demi'
 import moment from 'moment'
 import { NAvatar } from 'naive-ui'
+import { reactive } from 'vue-demi'
+import { ref, onMounted, inject } from 'vue'
+import { Socket } from 'socket.io-client'
+const socket = inject('socket') as Socket
 // eslint-disable-next-line vue/require-default-prop
 const p: any = defineProps({ params: Object })
+
+onMounted(() => {
+  socket.connect() //连接socket服务器
+})
+const send = () => {
+  console.log('')
+  socket.emit('socketTest', { test: '测试数据' }, (data: any) => {
+    console.log(data) // { msg1: '测试1', msg2: '测试2' }
+  })
+}
 </script>
 <style lang="scss" scoped>
 .message_all {

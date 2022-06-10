@@ -38,6 +38,7 @@ import SideList from './components/sideList/index.vue'
     width: 60vw;
     display: flex;
     flex-direction: column;
+    border-radius: 1vw;
     .header {
       height: 8%;
       background-color: rgba(223, 223, 224, 0.5);
